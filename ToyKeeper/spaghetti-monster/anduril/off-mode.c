@@ -144,8 +144,7 @@ uint8_t off_state(Event event, uint16_t arg) {
     #endif  // if (B_TIMING_ON != B_TIMEOUT_T)
     // 1 click: regular mode main emitter
     else if (event == EV_1click) {
-        tint = 1;
-        // invert between 1 and 254
+        tint = 1;  // invert between 1 and 254
         #if (B_TIMING_ON != B_TIMEOUT_T)
         // brightness was already set; reuse previous value
         set_state(steady_state, actual_level);
@@ -156,10 +155,9 @@ uint8_t off_state(Event event, uint16_t arg) {
         #endif
         return MISCHIEF_MANAGED;
     }
-    // 2 clicks on for alt emitter
+    // noob-noob: 2 clicks on for alt emitter
     else if (event == EV_2clicks) {
-        tint = 254;
-        // invert between 1 and 254
+        tint = 254; // invert between 1 and 254
         #if (B_TIMING_ON != B_TIMEOUT_T)
         // brightness was already set; reuse previous value
         set_state(steady_state, actual_level);

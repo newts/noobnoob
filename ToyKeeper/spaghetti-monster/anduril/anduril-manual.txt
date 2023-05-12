@@ -63,6 +63,13 @@ Functions available in Simple UI include:
   - 2C: Double click to go to / from highest safe level
   - 4C: Lockout mode.
 
+noob noob:
+  - 1C: On CH1 / off
+  - 2C CH2 On
+  - 1H 
+  - 2H
+  - ?? Bike Mode
+
 Some other modes and functions are available too.  When the light is 
 off, these are the options:
 
