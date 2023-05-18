@@ -97,6 +97,7 @@ uint8_t off_state(Event event, uint16_t arg) {
     #endif  // B_TIMING_ON == B_PRESS_T
     // hold: go to lowest level
     else if (event == EV_click1_hold) {
+        tint = 1;
         #if (B_TIMING_ON == B_PRESS_T)
         #ifdef MOON_TIMING_HINT
         if (arg == 0) {
@@ -122,6 +123,8 @@ uint8_t off_state(Event event, uint16_t arg) {
     }
     // hold, release quickly: go to lowest level (floor)
     else if (event == EV_click1_hold_release) {
+        // noob noob CH1 low
+        tint = 1;
         set_state(steady_state, 1);
         return MISCHIEF_MANAGED;
     }
@@ -169,7 +172,9 @@ uint8_t off_state(Event event, uint16_t arg) {
         return MISCHIEF_MANAGED;
     }
     else if (event == EV_click2_hold_release) {
-        set_level(0);
+        // noob noob CH2 low
+        tint = 254; // invert between 1 and 254
+        set_state(steady_state, 1);
         return MISCHIEF_MANAGED;
     }
     // 3 clicks (initial press): off, to prep for later events
@@ -184,6 +189,21 @@ uint8_t off_state(Event event, uint16_t arg) {
         return MISCHIEF_MANAGED;
     }
     #endif
+        // click, click, long-click: strobe mode
+        // noob noob promotes strobe to easy mode
+    #ifdef USE_STROBE_STATE
+    else if (event == EV_click3_hold) {
+        set_level(0); // will this turn CH1 off?
+        set_state(strobe_state, 0);
+        return MISCHIEF_MANAGED;
+    }
+    #elif defined(USE_BORING_STROBE_STATE)
+    else if (event == EV_click3_hold) {
+        set_state(boring_strobe_state, 0);
+        return MISCHIEF_MANAGED;
+    }
+    #endif
+
     #ifdef USE_LOCKOUT_MODE
     // 4 clicks: soft lockout
     else if (event == EV_4clicks) {
@@ -234,18 +254,6 @@ uint8_t off_state(Event event, uint16_t arg) {
     }
     #endif
 
-    // click, click, long-click: strobe mode
-    #ifdef USE_STROBE_STATE
-    else if (event == EV_click3_hold) {
-        set_state(strobe_state, 0);
-        return MISCHIEF_MANAGED;
-    }
-    #elif defined(USE_BORING_STROBE_STATE)
-    else if (event == EV_click3_hold) {
-        set_state(boring_strobe_state, 0);
-        return MISCHIEF_MANAGED;
-    }
-    #endif
     #ifdef USE_MOMENTARY_MODE
     // 5 clicks: momentary mode
     else if (event == EV_5clicks) {

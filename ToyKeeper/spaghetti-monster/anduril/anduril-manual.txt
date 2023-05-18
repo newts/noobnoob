@@ -64,11 +64,12 @@ Functions available in Simple UI include:
   - 4C: Lockout mode.
 
 noob noob:
-  - 1C: On CH1 / off
-  - 2C CH2 On
-  - 1H 
-  - 2H
-  - ?? Bike Mode
+  - 1C: On CH1
+  - 2C CH2 On Noobnoob
+  - 1H Ch1 low
+  - 2H Ch2 Low Noobnoob
+  - 3C Bat mode Noobnoob
+  - 3H Bike blink Noobnoob, default CH, 3H change channel
 
 Some other modes and functions are available too.  When the light is 
 off, these are the options:

@@ -43,9 +43,9 @@ typedef enum {
 
 const int NUM_STROBES = strobe_mode_END;
 
-// which strobe mode is active?
+// which strobe mode is active?  noon noob starts in bike mode of course
 #ifdef USE_CANDLE_MODE
-strobe_mode_te strobe_type = candle_mode_e;
+strobe_mode_te strobe_type = bike_flasher_e;
 #else
 strobe_mode_te strobe_type = 0;
 #endif
@@ -87,7 +87,7 @@ inline void lightning_storm_iter();
 
 // bike mode config options
 #ifdef USE_BIKE_FLASHER_MODE
-#define MAX_BIKING_LEVEL 120  // should be 127 or less
+#define MAX_BIKING_LEVEL 60  // should be 127 or less  noob noob lower "off"
 uint8_t bike_flasher_brightness = MAX_1x7135;
 inline void bike_flasher_iter();
 #endif

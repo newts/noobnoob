@@ -44,6 +44,10 @@ uint8_t strobe_state(Event event, uint16_t arg) {
     if (0) {}  // placeholder
     // init anything which needs to be initialized
     else if (event == EV_enter_state) {
+        // noob noob always starts in bike mode
+        strobe_type = bike_flasher_e;
+        tint = 254;  // start CH2 usually red
+        save_config();
         ramp_direction = 1;
         return MISCHIEF_MANAGED;
     }
